@@ -3,18 +3,18 @@ pipeline {
    
    stages {
        
-        stage('EnterUserInput') {
-         steps {
-             script {
+        // stage('EnterUserInput') {
+        //  steps {
+        //      script {
                  
-                 def userInputTxt = input(
-                                     id: 'inputTextbox', message: 'Please enter JOB Description', parameters: [
-                                     [$class: 'TextParameterDefinition', description: 'String or Integer etc..',name: 'input']
-                                    ])
-                    echo ("JOB Description is: ${userInputTxt}")
+        //          def userInputTxt = input(
+        //                              id: 'inputTextbox', message: 'Please enter JOB Description', parameters: [
+        //                              [$class: 'TextParameterDefinition', description: 'String or Integer etc..',name: 'input']
+        //                             ])
+        //             echo ("JOB Description is: ${userInputTxt}")
                      
-             }}   
-        }
+        //      }}   
+        // }
         
          stage('Upload a CSV') {
          steps {
