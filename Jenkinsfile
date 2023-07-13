@@ -1,14 +1,12 @@
 pipeline {
   agent any
   parameters {
-    base64File 'small'
+    file 'small'
   }
   stages {
     stage('Example') {
       steps {
-        withFileParameter('small') {
-          sh 'cat $small'
-        }
+        sh 'cat $small'
       }
     }
   }
