@@ -1,38 +1,24 @@
 pipeline {
-   agent any
-   
-   stages {
-       
-        // stage('EnterUserInput') {
-        //  steps {
-        //      script {
-                 
-        //          def userInputTxt = input(
-        //                              id: 'inputTextbox', message: 'Please enter JOB Description', parameters: [
-        //                              [$class: 'TextParameterDefinition', description: 'String or Integer etc..',name: 'input']
-        //                             ])
-        //             echo ("JOB Description is: ${userInputTxt}")
-                     
-        //      }}   
-        // }
-        
-         stage('Upload a CSV') {
-         steps {
-             script {
-                 
-                        def inputCSVPath = input message: 'Upload file', parameters: [file(name: 'Test.csv', description: 'Upload only CSV file')]
-                        def csvContent = readFile "${inputCSVPath}"
-                        
-                         echo ("CSV FILE PATH IS : ${inputCSVPath}")
-                         echo("CSV CONTENT IS: ${csvContent}") 
+    agent any
+    parameters {
+        string(name: "TEST_STRING", defaultValue: "ssbostan", trim: true, description: "Sample string parameter")
+    }
+    stages {
+        stage("Build") {
+            steps {
+                echo "Build stage."
+                echo "Hello $params.TEST_STRING"
+            }
         }
-                 
-                 echo env.STAGE_NAME
-                 echo '=========== Upload a CSV =============='
-                
-                        
-         }
-      }
-       
-   }
-  }
+        stage("Test") {
+            steps {
+                echo "Test stage."
+            }
+        }
+        stage("Release") {
+            steps {
+                echo "Release stage."
+            }
+        }
+    }
+}
