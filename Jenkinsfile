@@ -1,12 +1,12 @@
 pipeline {
   agent any
   parameters {
-    file 'small'
+    file(name: 'file.txt')
   }
   stages {
     stage('Example') {
       steps {
-        sh 'cat $small'
+        sh 'cat file.txt'
       }
     }
   }
